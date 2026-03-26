@@ -9,13 +9,14 @@ from src.paths import PROJECT_ROOT, ensure_directories
 
 DEFAULT_DEMO_ARTIFACT_DIRNAME = "demo_artifacts"
 DEMO_ARTIFACT_ROOT_ENV_VAR = "DEMO_ARTIFACT_ROOT"
+DEFAULT_ARTIFACT_ROOT = PROJECT_ROOT / DEFAULT_DEMO_ARTIFACT_DIRNAME
 
 
-def _resolve_demo_artifact_root() -> Path:
+def resolve_artifact_root() -> Path:
     artifact_root_override = os.environ.get(DEMO_ARTIFACT_ROOT_ENV_VAR)
     if artifact_root_override:
         return Path(artifact_root_override).expanduser()
-    return PROJECT_ROOT / DEFAULT_DEMO_ARTIFACT_DIRNAME
+    return DEFAULT_ARTIFACT_ROOT
 
 
 @dataclass(frozen=True)
@@ -46,10 +47,11 @@ class DemoPaths:
 
 DEMO_PATHS = DemoPaths(
     project_root=PROJECT_ROOT,
-    artifact_root=_resolve_demo_artifact_root(),
+    artifact_root=resolve_artifact_root(),
 )
 
-DEMO_ARTIFACT_DIR = DEMO_PATHS.artifact_root
+ARTIFACT_ROOT = DEMO_PATHS.artifact_root
+DEMO_ARTIFACT_DIR = ARTIFACT_ROOT
 
 DEMO_DATASET_DIR = DEMO_ARTIFACT_DIR / "datasets"
 
