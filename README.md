@@ -40,7 +40,7 @@ The source dataset used by the notebook lives at `data/processed/Stage_1_public.
 2. Install dependencies with `pip install -r requirements.txt`.
 3. Open [notebooks/demo_model_and_artifact_persistence.ipynb](/home/alextd/projects/ml-model-persistence-demo/notebooks/demo_model_and_artifact_persistence.ipynb) and run it from the cloned repo.
 
-The notebook uses repo-relative paths, so local runs and reruns will keep loading from and saving to the same `demo_artifacts/` tree.
+The notebook uses one central artifact-root configuration. Local runs and reruns keep loading from and saving to the repo-local `demo_artifacts/` tree by default.
 
 ## Running in Colab
 
@@ -63,9 +63,11 @@ before running the notebook bootstrap cell.
 
 Optional Google Drive support:
 
-- mount Drive if you want persistence across Colab runtime resets
-- either clone the repo inside Drive or copy `demo_artifacts/` into Drive after a run
-- the notebook itself stays repo-relative, so no code changes are required just to use Drive-backed storage
+- set `USE_GOOGLE_DRIVE_ARTIFACTS = True` in the notebook bootstrap cell
+- optionally change `GOOGLE_DRIVE_ARTIFACT_ROOT` from its default `/content/drive/MyDrive/ml-model-persistence-demo/demo_artifacts`
+- the bootstrap cell mounts Drive and sets `DEMO_ARTIFACT_ROOT` for the notebook session
+- the repo can still live under `/content/...`; only `demo_artifacts/` moves to Drive
+- saved artifact references remain reloadable across Colab sessions as long as the same Drive artifact root is used
 
 ## Persistence behaviour
 

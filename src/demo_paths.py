@@ -1,13 +1,55 @@
 from __future__ import annotations
 
+import os
+from dataclasses import dataclass
 from pathlib import Path
 
-from src.paths import ensure_directories, resolve_project_root
+from src.paths import PROJECT_ROOT, ensure_directories
 
 
-PROJECT_ROOT = resolve_project_root()
+DEFAULT_DEMO_ARTIFACT_DIRNAME = "demo_artifacts"
+DEMO_ARTIFACT_ROOT_ENV_VAR = "DEMO_ARTIFACT_ROOT"
 
-DEMO_ARTIFACT_DIR = PROJECT_ROOT / "demo_artifacts"
+
+def _resolve_demo_artifact_root() -> Path:
+    artifact_root_override = os.environ.get(DEMO_ARTIFACT_ROOT_ENV_VAR)
+    if artifact_root_override:
+        return Path(artifact_root_override).expanduser()
+    return PROJECT_ROOT / DEFAULT_DEMO_ARTIFACT_DIRNAME
+
+
+@dataclass(frozen=True)
+class DemoPaths:
+    project_root: Path
+    artifact_root: Path
+
+    @property
+    def artifact_reference_root(self) -> Path:
+        return self.artifact_root.parent
+
+    def to_artifact_reference(self, path: str | Path) -> str:
+        artifact_path = Path(path)
+        if not artifact_path.is_absolute():
+            artifact_path = self.artifact_reference_root / artifact_path
+
+        try:
+            return artifact_path.relative_to(self.artifact_reference_root).as_posix()
+        except ValueError:
+            return artifact_path.as_posix()
+
+    def resolve_artifact_reference(self, reference: str | Path) -> Path:
+        artifact_reference = Path(reference)
+        if artifact_reference.is_absolute():
+            return artifact_reference
+        return self.artifact_reference_root / artifact_reference
+
+
+DEMO_PATHS = DemoPaths(
+    project_root=PROJECT_ROOT,
+    artifact_root=_resolve_demo_artifact_root(),
+)
+
+DEMO_ARTIFACT_DIR = DEMO_PATHS.artifact_root
 
 DEMO_DATASET_DIR = DEMO_ARTIFACT_DIR / "datasets"
 
@@ -25,6 +67,14 @@ DEMO_NN_GRID_SEARCH_MODEL_DIR = DEMO_NN_GRID_SEARCH_DIR / "models"
 
 DEMO_FIGURES_DIR = DEMO_ARTIFACT_DIR / "figures"
 DEMO_MPLCONFIG_DIR = DEMO_ARTIFACT_DIR / ".mplconfig"
+
+
+def to_artifact_reference(path: str | Path) -> str:
+    return DEMO_PATHS.to_artifact_reference(path)
+
+
+def resolve_artifact_reference(reference: str | Path) -> Path:
+    return DEMO_PATHS.resolve_artifact_reference(reference)
 
 
 def ensure_demo_directories() -> None:
