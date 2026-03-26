@@ -1,0 +1,35 @@
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+
+*.tmp
+*.log
+*.sqlite3-journal
+*.db-journal
+
+demo_artifacts/.mplconfig/
+
+# Keep only the processed demo dataset under version control.
+data/*
+!data/processed/
+data/processed/*
+!data/processed/Stage_1_public.csv
+
+# Keep generated demo artefacts reproducible.
+!demo_artifacts/
+!demo_artifacts/**/
+!demo_artifacts/**/.gitkeep
+!demo_artifacts/**/*.csv
+!demo_artifacts/**/*.json
+!demo_artifacts/**/*.txt
+!demo_artifacts/**/*.joblib
+!demo_artifacts/**/*.keras
+!demo_artifacts/**/*.h5
+!demo_artifacts/**/*.sqlite3

@@ -1,0 +1,59 @@
+Results summary
+Results in /home/alextd/projects/ml-model-persistence-demo/demo_artifacts/tuning/keras_tuner/demo_nn_search
+Showing 10 best trials
+Objective(name="val_auc", direction="max")
+
+Trial 2 summary
+Hyperparameters:
+units: 48
+layers: 1
+activation: relu
+optimizer: adam
+lr: 0.001
+dropout: 0.1
+l2_strength: 1e-05
+Score: 0.8697707653045654
+
+Trial 3 summary
+Hyperparameters:
+units: 32
+layers: 1
+activation: relu
+optimizer: adam
+lr: 0.001
+dropout: 0.2
+l2_strength: 1e-05
+Score: 0.8666468262672424
+
+Trial 4 summary
+Hyperparameters:
+units: 48
+layers: 1
+activation: relu
+optimizer: adam
+lr: 0.0003
+dropout: 0.1
+l2_strength: 0.0
+Score: 0.8646538257598877
+
+Trial 0 summary
+Hyperparameters:
+units: 32
+layers: 1
+activation: relu
+optimizer: adam
+lr: 0.0003
+dropout: 0.1
+l2_strength: 1e-05
+Score: 0.8495115637779236
+
+Trial 1 summary
+Hyperparameters:
+units: 16
+layers: 1
+activation: relu
+optimizer: adam
+lr: 0.0003
+dropout: 0.2
+l2_strength: 0.0
+Score: 0.8454051613807678
