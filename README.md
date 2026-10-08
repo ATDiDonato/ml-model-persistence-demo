@@ -1,5 +1,7 @@
 # ML Model Persistence Demo
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ATDiDonato/ml-model-persistence-demo/blob/master/notebooks/demo_model_and_artifact_persistence.ipynb)
+
 This repo is a standalone demo for save/load workflows around datasets, trained models, and tuning artefacts. The main entry point is [notebooks/demo_model_and_artifact_persistence.ipynb](notebooks/demo_model_and_artifact_persistence.ipynb).
 
 The notebook demonstrates:
