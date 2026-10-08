@@ -47,7 +47,7 @@ The notebook uses one central artifact-root configuration. Local runs and reruns
 Clone the repo into `/content/ml-model-persistence-demo` and install dependencies:
 
 ```bash
-!git clone <repo-url> /content/ml-model-persistence-demo
+!git clone https://github.com/ATDiDonato/ml-model-persistence-demo.git /content/ml-model-persistence-demo
 %cd /content/ml-model-persistence-demo
 !pip install -r requirements.txt
 ```
