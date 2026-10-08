@@ -1,6 +1,6 @@
 # ML Model Persistence Demo
 
-This repo is a standalone demo for save/load workflows around datasets, trained models, and tuning artefacts. The main entry point is [notebooks/demo_model_and_artifact_persistence.ipynb](/home/alextd/projects/ml-model-persistence-demo/notebooks/demo_model_and_artifact_persistence.ipynb).
+This repo is a standalone demo for save/load workflows around datasets, trained models, and tuning artefacts. The main entry point is [notebooks/demo_model_and_artifact_persistence.ipynb](notebooks/demo_model_and_artifact_persistence.ipynb).
 
 The notebook demonstrates:
 
@@ -38,7 +38,7 @@ The source dataset used by the notebook lives at `data/processed/Stage_1_public.
 
 1. Create and activate a Python environment.
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Open [notebooks/demo_model_and_artifact_persistence.ipynb](/home/alextd/projects/ml-model-persistence-demo/notebooks/demo_model_and_artifact_persistence.ipynb) and run it from the cloned repo.
+3. Open [notebooks/demo_model_and_artifact_persistence.ipynb](notebooks/demo_model_and_artifact_persistence.ipynb) and run it from the cloned repo.
 
 The notebook uses one central artifact-root configuration. Local runs and reruns keep loading from and saving to the repo-local `demo_artifacts/` tree by default.
 
